@@ -6,42 +6,42 @@ Required Prerequirties
  - 2: Install Boto3 - `pip install boto3`
  - 3: Install AWS Collection - `ansible-galaxy collection install amazon.aws`
 ----
-### Task 1- Provisioning three EC2 instances using Ansible loops
+## Task 1- Provisioning three EC2 instances using Ansible loops
 
-#### Step 1. 
+### Step 1. 
  - Open IAM in AWS. Create a user, attach `Ec2 full access` policy in it.
  - Generate API keys which to be secure in Ansible Vault.
 
-#### Step 2.
+### Step 2.
  - Create an Ansible YAML playbook which is to provision and manage the three AWS EC2 instances.
  - Here `loop` is used to iterate the three Ec2 instances.
  - From Ansible Documentation, we can use the example playbooks or we can create our own playbooks according to our need.
 
- ##### Playbook:
+ #### Playbook:
   <img width="663" height="390" alt="image" src="https://github.com/user-attachments/assets/b852c8b9-b3c2-4418-b64b-119e531b2580" />
 
-#### Step 3.
+### Step 3.
  - Ansible vault is created to store our API keys- Access key and secret key.
  - Below commands used to create vault to store keys.
    <img width="1055" height="92" alt="vault" src="https://github.com/user-attachments/assets/76543bd8-77a5-4527-bf62-ccf354618603" />
 
-#### Step 4.
+### Step 4.
  - Executing our playbook.
 
    <img width="1354" height="333" alt="run playbook" src="https://github.com/user-attachments/assets/c0f299d8-ccba-4959-ac75-80be9bb5326b" />
 
-#### Step 5.
+### Step 5.
 - Verify AWS EC2 Instances. Here the provisioned 2 Ubuntu and 1 CentOs EC2 instances are created successfully.
 
   <img width="1297" height="346" alt="3ec2instances" src="https://github.com/user-attachments/assets/806e0717-eea2-4753-bb53-5add55d83fd8" />
 ------
 
-### TASK 2 : Passwordless Authentication**
+## TASK 2 : Passwordless Authentication**
 
-#### Step 1. Store `.pemkey` in local to execute SSH connect.
+### Step 1. Store `.pemkey` in local to execute SSH connect.
  - Create `sshkeygen`
 
-#### Step 2 : Configure Security Group Inbound Rule for SSH Access
+### Step 2 : Configure Security Group Inbound Rule for SSH Access
 
   - Create new role in EC2 instance security group Inbound role where,
                  1. Type: SSH
@@ -49,7 +49,7 @@ Required Prerequirties
                  3. Port Range: 22
                  4. Source:0.0.0.0/0 (for public access) OR your IP (recommended for security)
 
-#### Step 3 : Connect to EC2 Instances Using SSH
+### Step 3 : Connect to EC2 Instances Using SSH
 
 - 1. SSH Linux Os Ec2 Instance.
   
@@ -65,8 +65,33 @@ Required Prerequirties
  
        <img width="953" height="652" alt="Ubuntu2Ssh" src="https://github.com/user-attachments/assets/b223d909-3d0c-453d-9356-5755de7d20f1" />
 
+#### Note - If we neeed to SSH bunch os instances say 50 or 100 we can use an SSH Agent or Loops in our file. 
+-------
 
-**Note** - If we neeed to SSH bunch os instances say 50 or 100 we can use an SSH Agent or Loops in our file. 
+## TASK 3 - Conditional Automation - Shuttingdown the ubuntu instances**
+
+### Step 1. Create an Ansible playbook.yaml file to write task for automate shutdown of two Ubuntu EC2 Instances.
+ 
+ <img width="493" height="173" alt="image" src="https://github.com/user-attachments/assets/72cbb02c-82c5-4eb3-8ae6-48a886e6362a" />
+
+
+### Step 2. Update the Inventory File by adding all the Ips in it.
+
+  <img width="263" height="93" alt="image" src="https://github.com/user-attachments/assets/6179a330-2399-4498-8e32-07f8b5497687" />
+
+
+### Step 3. Run the playbook.
+
+   <img width="1349" height="404" alt="shutdown cmd" src="https://github.com/user-attachments/assets/a7cdad83-c4cf-45f4-9697-3fce23b4b378" />
+
+### Step 4. Verify Aws EC2 instances that two Ubuntu Instances stopped succesfully.
+
+ <img width="1241" height="337" alt="stopped" src="https://github.com/user-attachments/assets/3edef067-8a05-4b65-a2bc-a69dee3c9926" />
+
+ --------
+ ----------------
+
+
 
 
 
